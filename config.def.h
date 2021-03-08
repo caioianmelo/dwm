@@ -7,6 +7,8 @@ static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10", "IPAGothic:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
+static const unsigned int baralpha = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -17,6 +19,11 @@ static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+};
+static const unsigned int alphas[][3]      = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
@@ -33,6 +40,7 @@ static const Rule rules[] = {
 	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "mpv",  NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "st-256color",  NULL,       "newsboat",       1 << 7,       0,           -1 },
+	{ "st-256color",  NULL,       "mpv",       1 << 8,       0,           -1 },
 	{ "Zathura",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
@@ -105,7 +113,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_b,      toggleAttachBelow,         {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

@@ -30,12 +30,17 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	//{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "qutebrowser",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "mpv",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "st-256color",  NULL,       "newsboat",       1 << 7,       0,           -1 },
+	{ "Zathura",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
 static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int attachbelow = 1;    /* 1 means attach after the currently active window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -66,10 +71,10 @@ static const char *termcmd[]  = { "st", NULL };
 ResourcePref resources[] = {
 		{ "color0",        STRING,  &normbgcolor },
 		{ "color0",    STRING,  &normbordercolor },
-		{ "color15",        STRING,  &normfgcolor },
+		{ "color6",        STRING,  &normfgcolor },
 		{ "color4",         STRING,  &selbgcolor },
 		{ "color8",     STRING,  &selbordercolor },
-		{ "color15",         STRING,  &selfgcolor },
+		{ "color0",         STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },

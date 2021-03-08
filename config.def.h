@@ -5,7 +5,7 @@ static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
+static const char *fonts[]          = { "monospace:size=10", "IPAGothic:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -30,12 +30,17 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	//{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "qutebrowser",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "mpv",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "st-256color",  NULL,       "newsboat",       1 << 7,       0,           -1 },
+	{ "Zathura",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
 static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int attachbelow = 1;    /* 1 means attach after the currently active window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -45,7 +50,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -64,12 +69,12 @@ static const char *termcmd[]  = { "st", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
+		{ "color0",        STRING,  &normbgcolor },
+		{ "color0",    STRING,  &normbordercolor },
+		{ "color6",        STRING,  &normfgcolor },
+		{ "color4",         STRING,  &selbgcolor },
+		{ "color8",     STRING,  &selbordercolor },
+		{ "color0",         STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },
@@ -100,6 +105,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_b,      toggleAttachBelow,         {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

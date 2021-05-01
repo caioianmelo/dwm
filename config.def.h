@@ -1,12 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10", "IPAGothic:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=9", "IPAGothic:size=9" };
+static const char dmenufont[]       = "monospace:size=9";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static char normbgcolor[]           = "#222222";
@@ -34,14 +34,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	//{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "qutebrowser",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "mpv",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "st-256color",  NULL,       "newsboat",       1 << 7,       0,           -1 },
-	{ "st-256color",  NULL,       "mpv",       1 << 8,       0,           -1 },
-	{ "Zathura",  NULL,       NULL,       1 << 2,       0,           -1 },
+	/* class      		instance    	title       	tags mask     	isfloating   	monitor */
+	//{ "Gimp",     	NULL,       	NULL,       	0,            	1,           	-1 },
+	{ "qutebrowser",  	NULL,       	NULL,       	1 << 6,       	0,           	-1 },
+	{ "firefox",  		NULL,       	NULL,       	1 << 1,       	0,           	-1 },
+	{ "mpv",  		NULL,       	NULL,       	1 << 8,       	0,           	-1 },
+	{ "st-256color",  	NULL,       	"newsboat",     1 << 7,       	0,           	-1 },
+	{ "st-256color",  	NULL,       	"tcheck.sh",	1 << 5,       	0,           	-1 },
+	{ "st-256color",  	NULL,       	"mpv",      	1 << 8,       	0,           	-1 },
+	{ "tabbed",  		NULL,       	NULL,       	1 << 2,       	0,           	-1 },
+	{ "Zathura",  		NULL,       	NULL,       	1 << 2,       	0,           	-1 },
 };
 
 /* layout(s) */
@@ -122,7 +124,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_delete,      quit,         {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} },
 };
 
